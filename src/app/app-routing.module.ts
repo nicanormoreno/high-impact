@@ -16,7 +16,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const screens=[
+export const screensComponents=[
   HomeComponent,
   LoginComponent
 ]

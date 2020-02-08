@@ -19,10 +19,12 @@
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
+    "@material-ui/core": "^4.9.1",
     "@ngrx/core": "github:ngrx/core",
     "@ngrx/store": "^8.6.0",
     "ng-redux": "^4.4.1",
     "rxjs": "~6.5.4",
+    "sweetalert2": "^9.7.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
