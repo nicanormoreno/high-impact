@@ -9,7 +9,6 @@ import { CashiersService } from '../../providers/cashiers/cashiers.service';
 export class HomeComponent implements OnInit {
 
   constructor(private service: CashiersService) {
-    localStorage.clear()
     this.service.getCashiers().subscribe(response=>{
       console.log(response)
     })

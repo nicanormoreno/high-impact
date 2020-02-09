@@ -63,10 +63,10 @@ export class AuthService {
   }
 
   /*
-    delete all the parameter of the cache to close te session.
+    delete the session token of the cache to close te session.
     Doesn't retun any value
   */
   logout() {
-    localStorage.clear()
+    localStorage.removeItem('token')
   }
 }
