@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="screen-container">
+  <div class="login-container card">
+    <div class='card-header' style='background-color: rgb(187, 42, 42); width:100%'>
+      <a class='title'>Login</a>
+    </div>
+    <form [formGroup]="forma" (ngSubmit)="onSubmit()" class="form-group text-center" style='margin-top:30px;'>
+      <div class='row context-center'>
+        <mat-icon style='margin-right: 7px'>person</mat-icon>
+        <mat-form-field>
+          <input matInput placeholder="username" formControlName="username" />
+        </mat-form-field>
+      </div>
+      <div class='row context-center'>
+        <mat-icon style='margin-right: 7px'>vpn_key</mat-icon>
+        <mat-form-field>
+          <input matInput placeholder="password" formControlName="password" />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <div class=" form-check " style='display: flex; align-items: center'>
+          <input type="checkbox" class="form-check-input" formControlName="remember_me">
+          <label class="form-check-label" for="dropdownCheck2">
+            Remember me
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style='padding-right: 15px; padding-left: 15px; margin-top:20px;'>
+        SIGN IN
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,10 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//http request
+import {HttpClientModule} from '@angular/common/http'
+//forms
+import{FormsModule, ReactiveFormsModule} from '@angular/forms'
+//componenets from materialUI
+import {MaterialModule} from './material.module'
+//screens
 import { HomeComponent } from './screens/home/home.component';
 import { LoginComponent } from './screens/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +22,12 @@ import { LoginComponent } from './screens/login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
