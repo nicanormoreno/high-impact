@@ -19,8 +19,7 @@ export class CashiersService {
   constructor(private http: HttpClient) {}
 
   getCashiers() {
-   let endpoint = `${SERVER_URL}/atms`
-    
+    let endpoint = `${SERVER_URL}/atms`
     Swal.fire({
       title: "Loading...",
       allowOutsideClick: false
@@ -30,6 +29,7 @@ export class CashiersService {
       endpoint, { headers: _defaultHeaders }
     ).pipe(
       map(response => {
+        console.log(response)
         Swal.close();
         return response
       })

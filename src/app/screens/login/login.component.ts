@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AuthService } from '../../providers/auth/auth.service';
 import { Router } from '@angular/router';
+import {Store} from '@ngrx/store'
+import {appState} from '../../store/app.reducer'
+import {actionLogin, actionAuthenticateSession} from '../../store/actions/auth.actions'
 
 
 @Component({
@@ -14,7 +17,7 @@ export class LoginComponent implements OnInit {
   remember_me = localStorage.getItem('remember_me') ? true : false
   forma: FormGroup;
 
-  constructor(private service: AuthService, private router:Router) {
+  constructor(private store:Store<appState>) {
     this.forma = new FormGroup({
       username: new FormControl(this.username, Validators.required),
       password: new FormControl("", Validators.required),
@@ -23,9 +26,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.service.authenticateSession()){
-      
-    }
+    this.store.dispatch(
+      actionAuthenticateSession()
+    )
   }
 
   /*
@@ -42,9 +45,9 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.clear()
       }
-      this.service.login(username, password).subscribe(response => {
-        this.router.navigateByUrl("/home")
-      })
+      this.store.dispatch(
+        actionLogin({username, password})
+      )
     }
   }
 }

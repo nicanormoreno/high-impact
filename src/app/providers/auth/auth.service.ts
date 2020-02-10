@@ -45,14 +45,8 @@ export class AuthService {
     Swal.showLoading();
     return this.http.post(
       endpoint,
-      {
-        username: username,
-        password: password
-      },
-      {
-        responseType: 'text',
-        headers: _defaultHeaders
-      }
+      { username: username, password: password },
+      { responseType: 'text', headers: _defaultHeaders }
     ).pipe(
       map((response: string) => {
         Swal.close()

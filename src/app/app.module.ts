@@ -9,6 +9,11 @@ import {HttpClientModule} from '@angular/common/http'
 import{FormsModule, ReactiveFormsModule} from '@angular/forms'
 //componenets from materialUI
 import {MaterialModule} from './material.module'
+//redux
+import{StoreModule} from "@ngrx/store"
+import {AppReducer} from './store/app.reducer'
+import {EffectsModule} from '@ngrx/effects'
+import {effectsArray} from './store/effects'
 //screens
 import { HomeComponent } from './screens/home/home.component';
 import { LoginComponent } from './screens/login/login.component';
@@ -29,7 +34,9 @@ import { HeaderComponent } from './components/header/header.component';
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(AppReducer),
+    EffectsModule.forRoot(effectsArray)
   ],
   providers: [],
   bootstrap: [AppComponent]

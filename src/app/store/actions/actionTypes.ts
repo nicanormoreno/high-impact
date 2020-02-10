@@ -1,0 +1,15 @@
+/*
+    this is the list of the name keys for the actions
+*/
+
+//authentication
+export const ACT_LOGIN = "ACT_LOGIN"
+export const ACT_LOGIN_SUCCESS = "ACT_LOGIN_SUCCESS"
+export const ACT_LOGIN_ERROR = "ACT_LOGIN_ERROR"
+export const ACT_LOGOUT = "ACT_LOGOUT"
+export const ACT_AUTHENTICATE_SESSION ="ACT_AUTHENTICATE_SESSION"
+// atm
+export const ACT_GET_ALL_CASHIERS = "ACT_GET_ALL_CASHIERS"
+export const ACT_GET_ALL_CASHIERS_SUCCESS = "ACT_GET_ALL_CASHIERS_SUCCESS"
+export const ACT_GET_ALL_CASHIERS_ERROR = "ACT_GET_ALL_CASHIERS_ERROR"
+export const ACT_CASHIER_CHANGE_PROPS ="ACT_CASHIER_CHANGE_PROPS"
