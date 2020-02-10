@@ -1,4 +1,4 @@
-interface geolocation {
+interface geoLocation {
     creationDate: Date;
     id: number;
     lat: number;
@@ -8,14 +8,14 @@ interface geolocation {
 interface address {
     city: string;
     creationDate: Date;
-    geolocation: geolocation
+    geoLocation: geoLocation
     housenumber:number;
     id:number;
     postalcode:string;
     street:string;
 }
 
-export interface atm {
+export interface AtmModel {
     address: address;
     creationDate: Date;
     id: number;

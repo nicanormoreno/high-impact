@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from '@angular/material/icon'
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatCheckboxModule} from '@angular/material/checkbox'
 
 /* 
  this module import and set  
@@ -18,13 +19,15 @@ import {MatFormFieldModule} from '@angular/material/form-field'
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule
   ],
   exports: [
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

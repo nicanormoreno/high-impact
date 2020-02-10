@@ -1,10 +1,13 @@
 // import * as reducers from './reducers';
-import {ActionReducerMap} from '@ngrx/store'
+import { ActionReducerMap } from '@ngrx/store'
+import * as reducers from './reducers'
 
-export interface appState{
-
+export interface appState {
+    auth: reducers.authState
+    cashier: reducers.cashierState
 }
 
-export const AppReducer: ActionReducerMap<appState>={
-
+export const AppReducer: ActionReducerMap<appState> = {
+    auth: reducers.AuthReducer,
+    cashier: reducers.CashierReducer
 }

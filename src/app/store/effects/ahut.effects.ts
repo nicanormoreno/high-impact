@@ -45,7 +45,6 @@ export class AuthEffects {
             ofType(ACT_LOGIN_ERROR),
             concatMap(error => of(error).pipe()), tap((error) => {
                 Swal.close();
-                console.log(error);
             })
         ),
         { dispatch: false }

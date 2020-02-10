@@ -1,3 +1,51 @@
 <app-header></app-header>
+<div class='column' style=' justify-content: center; align-items: center'>
+  <div style='margin-top:80px; display: flex; justify-content: center'>
+    <form class="row" [formGroup]='searchForm' (ngSubmit)="search()">
+      <div style="display: flex; align-items: center; width: 1110px; height: 60px; background-color: white">
+        <div style="margin-left: 20px; margin-right: 20px">
+          <input formControlName="label" />
+        </div>
+        <div class="form-check" style="margin-right: 20px">
+          <input type="checkbox" class="form-check-input" formControlName="address">
+          <label class="form-check-label">Address</label>
+        </div>
+        <div class="form-check" style="margin-right: 20px">
+          <input type="checkbox" class="form-check-input" formControlName="housenumber">
+          <label class="form-check-label">Housenumber</label>
+        </div>
+        <div class="form-check" style="margin-right: 20px">
+          <input type="checkbox" class="form-check-input" formControlName="city">
+          <label class="form-check-label">City</label>
+        </div>
+        <div class="form-check" style="margin-right: 20px">
+          <input type="checkbox" class="form-check-input" formControlName="postalcode">
+          <label class="form-check-label">Postal Code</label>
+        </div>
+        <div class="form-check" style="margin-right: 20px">
+          <input type="checkbox" class="form-check-input" formControlName="lat">
+          <label class="form-check-label">Latitude</label>
+        </div>
+        <div class="form-check" style="margin-right: 20px">
+          <input type="checkbox" class="form-check-input" formControlName="lng">
+          <label class="form-check-label">Longitude</label>
+        </div>
+        <div class="form-check" style="margin-right: 20px">
+          <input type="checkbox" class="form-check-input" formControlName="type">
+          <label class="form-check-label">Type</label>
+        </div>
+        <button type="submit" class="btn btn-info" style="display:flex; justify-content: center; align-items: center">
+             <mat-icon>search</mat-icon>
+             Search</button>
+      </div>
+    </form>
+  </div>
+  <div class='container'>
+    <agm-map [zoom]='1'>
+      <agm-marker *ngFor="let atm of atmsList; let i = index" [latitude]="atm.address.geoLocation.lat"
+        [longitude]="atm.address.geoLocation.lng" (markerClick)=atmDetail(atm) matTooltip="no pago">
+      </agm-marker>
+    </agm-map>
+  </div>
 
-<p>home works!</p>
+</div>

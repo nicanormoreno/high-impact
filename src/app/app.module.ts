@@ -14,6 +14,8 @@ import{StoreModule} from "@ngrx/store"
 import {AppReducer} from './store/app.reducer'
 import {EffectsModule} from '@ngrx/effects'
 import {effectsArray} from './store/effects'
+//maps
+import {AgmCoreModule} from '@agm/core'
 //screens
 import { HomeComponent } from './screens/home/home.component';
 import { LoginComponent } from './screens/login/login.component';
@@ -36,7 +38,10 @@ import { HeaderComponent } from './components/header/header.component';
     HttpClientModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(AppReducer),
-    EffectsModule.forRoot(effectsArray)
+    EffectsModule.forRoot(effectsArray),
+    AgmCoreModule.forRoot({
+      apiKey:"AIzaSyD_xCIOixV5boC55wuWBURRrVpO8vbAKrY"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
