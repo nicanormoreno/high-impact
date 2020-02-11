@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   constructor(private store: Store<appState>) {
     navigator.geolocation.getCurrentPosition(response => {
       this.lat = response.coords.latitude;
-      this.lng = response.coords.longitude
+      this.lng = response.coords.longitude;
     })
 
     this.store.select('cashier').subscribe(rta => {
