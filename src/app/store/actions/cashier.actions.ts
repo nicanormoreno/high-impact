@@ -22,5 +22,5 @@ export const actionGetAllCashersError = createAction(
 
 export const actionSearchCasiers = createAction(
     ACT_SEATCH_CASIERS,
-    props<{search:string}>()
-)
+    props<{search:string, fields:string}>()
+) 

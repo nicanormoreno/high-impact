@@ -14,6 +14,14 @@ import { tap, map, exhaustMap, catchError, concatMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
 
+
+/*
+    when the an action of some kind is dispatched, 
+    thoses effects are activateds, receive the actions props and 
+    call the services and dispatch another actions
+    or functions if is required
+*/
+
 @Injectable()
 export class AuthEffects {
     constructor(private authService: AuthService, private action$: Actions, private router: Router) { }
@@ -45,6 +53,7 @@ export class AuthEffects {
             ofType(ACT_LOGIN_ERROR),
             concatMap(error => of(error).pipe()), tap((error) => {
                 Swal.close();
+                console.log(error)
             })
         ),
         { dispatch: false }

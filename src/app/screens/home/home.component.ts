@@ -3,7 +3,7 @@ import { AtmModel } from '../../models/atm.model'
 import { Store } from '@ngrx/store'
 import { appState } from '../../store/app.reducer'
 import { actionGetAllCashers, actionSearchCasiers } from '../../store/actions/cashier.actions'
-import {FormGroup, FormControl, Validators} from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,26 +12,30 @@ import Swal from 'sweetalert2';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  lat: number;
-  lng: number
-  atmsList: AtmModel[]
+
+  lat: number = 52.010421;
+  lng: number = 5.431647;
+  zoom: number = 10;
+  atmsList: AtmModel[];
+  error = null;
   searchForm: FormGroup
 
   constructor(private store: Store<appState>) {
-    navigator.geolocation.getCurrentPosition(response=>{
+    navigator.geolocation.getCurrentPosition(response => {
       this.lat = response.coords.latitude;
       this.lng = response.coords.longitude
     })
 
     this.store.select('cashier').subscribe(rta => {
-      this.atmsList = rta.atmsList
+      this.atmsList = rta.atmsList;
+      this.error = rta.error;
     })
     this.store.dispatch(
       actionGetAllCashers()
     )
 
     this.searchForm = new FormGroup({
-      label: new FormControl('' ),
+      label: new FormControl(''),
       address: new FormControl(''),
       city: new FormControl(''),
       housenumber: new FormControl(''),
@@ -47,7 +51,6 @@ export class HomeComponent implements OnInit {
   */
   atmDetail(atm: AtmModel) {
     Swal.fire({
-      // title:"<strong>ATM</strong>",
       imageUrl: "https://www.jetco.com.hk/images/icons/Icon-atms.png",
       imageHeight: 100,
       html: `
@@ -71,24 +74,37 @@ export class HomeComponent implements OnInit {
   }
 
 
-  search(){
+  search() {
+
     let value = this.searchForm.value
-   
-    let search:string = `q=${value.label}&fields=`
-    if(value.street) search = search+'street,'
-    if(value.housenumber) search = search+'housenumber,'
-    if(value.postalcode) search = search+'postalcode,'
-    if(value.city) search = search+'city,'
-    if(value.lat) search = search+'lat,'
-    if(value.lng) search = search+'lng,'
-    if(value.type) search = search+'type,'
-    
-    search = search.substring(0, search.length - 1);
+    let search = value.label;
+    /*
+      generate a string with the fields to search
+    */
+    let fields: string = ''
+    if (value.street) fields = fields + 'street,'
+    if (value.housenumber) fields = fields + 'housenumber,'
+    if (value.postalcode) fields = fields + 'postalcode,'
+    if (value.city) fields = fields + 'city,'
+    if (value.lat) fields = fields + 'lat,'
+    if (value.lng) fields = fields + 'lng,'
+    if (value.type) fields = fields + 'type,'
+
+    fields = fields.substring(0, fields.length - 1);
     this.store.dispatch(
-      actionSearchCasiers({search})
+      actionSearchCasiers({ search, fields })
     )
-    this.store.select('cashier').subscribe(rta=>{
+    this.store.select('cashier').subscribe(rta => {
       this.atmsList = rta.atmsList
+      console.log(this.lat, this.lng)
+      /* 
+        if some value cames has a string this convert it to numeric value 
+      */
+      let lat: string = this.atmsList[0].address.geoLocation.lat.toString()
+      let lng: string = this.atmsList[0].address.geoLocation.lng.toString()
+      this.lat = Number.parseFloat(lat)
+      this.lng = Number.parseFloat(lng)
+      this.zoom = 12
     })
   }
 

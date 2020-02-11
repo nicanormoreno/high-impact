@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <div class='column' style=' justify-content: center; align-items: center'>
   <div style='margin-top:80px; display: flex; justify-content: center'>
     <form class="row" [formGroup]='searchForm' (ngSubmit)="search()">
@@ -35,17 +36,24 @@
           <label class="form-check-label">Type</label>
         </div>
         <button type="submit" class="btn btn-info" style="display:flex; justify-content: center; align-items: center">
-             <mat-icon>search</mat-icon>
-             Search</button>
+          <mat-icon>search</mat-icon>
+          Search
+        </button>
       </div>
     </form>
   </div>
   <div class='container'>
-    <agm-map [zoom]='1'>
+    <agm-map [latitude]="lat" [longitude]='lng' [zoom]='zoom'>
       <agm-marker *ngFor="let atm of atmsList; let i = index" [latitude]="atm.address.geoLocation.lat"
         [longitude]="atm.address.geoLocation.lng" (markerClick)=atmDetail(atm) matTooltip="no pago">
       </agm-marker>
     </agm-map>
   </div>
-
+  <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert" style ="width: 220px">
+        <strong>Server error:</strong> 500
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="error=false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 </div>
+

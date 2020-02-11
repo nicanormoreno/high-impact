@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {Store} from '@ngrx/store'
 import {appState} from '../../store/app.reducer'
 import {actionLogin, actionAuthenticateSession} from '../../store/actions/auth.actions'
+import { subscribeOn } from 'rxjs/operators';
 
 
 @Component({
@@ -15,6 +16,7 @@ import {actionLogin, actionAuthenticateSession} from '../../store/actions/auth.a
 export class LoginComponent implements OnInit {
   username = localStorage.getItem('username');
   remember_me = localStorage.getItem('remember_me') ? true : false
+  error:any
   forma: FormGroup;
 
   constructor(private store:Store<appState>) {
@@ -29,6 +31,9 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(
       actionAuthenticateSession()
     )
+    this.store.select('auth').subscribe(rta=>{
+      if(rta.error) this.error = rta.error
+    })
   }
 
   /*

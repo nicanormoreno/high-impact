@@ -21,6 +21,9 @@ export class CashiersService {
     })
   }
 
+  /*
+    get all atms
+  */
   getCashiers() {
     let endpoint = `${SERVER_URL}/atms?q=Kaaikhof`
 
@@ -39,9 +42,16 @@ export class CashiersService {
     )
   }
 
-  searchCashiers(search) {
-    let endpoint = `${SERVER_URL}/atms?${search}`
-
+  /* 
+    get a atms list filters by the search paremeters
+    if the search has no search parameter or fields, return the list of all atms 
+  */
+  searchCashiers(search:string, fields:string) {
+    let endpoint;
+    search=== "" || fields===""
+      ?endpoint = `${SERVER_URL}/atms`
+      : endpoint = `${SERVER_URL}/atm?q=${search}&fields=${fields}`
+    console.log(endpoint)
     Swal.fire({
       title: "Loading...",
       allowOutsideClick: false
@@ -51,6 +61,7 @@ export class CashiersService {
       endpoint, { headers: this._defaultHeaders }
     ).pipe(
       map(response => {
+        console.log(response)
         Swal.close();
         return response
       })

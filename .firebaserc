@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "test-ec380"
+  },
+  "targets": {
+    "test-ec380": {
+      "hosting": {
+        "high-impact": [
+          "test-ec380"
+        ]
+      }
+    }
+  }
+}

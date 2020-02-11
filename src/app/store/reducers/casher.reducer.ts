@@ -5,10 +5,12 @@ import {
 
 export interface cashierState {
     atmsList: any[];
+    error:any
 }
 
 const cashier: cashierState = {
-    atmsList: []
+    atmsList: [],
+    error: null
 }
 
 const cashierReducer = createReducer(
